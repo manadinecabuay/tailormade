@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TailorMade - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="navbar.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d1033;
+      color: white;
+      position: relative;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      height: 100%;
+    }
+    body::-webkit-scrollbar { display: none; }
+
+    /* Blurred Background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: url('sewingpatterns.png');
+      background-repeat: repeat;
+      background-size: contain;
+      filter: blur(2px);
+      z-index: -2;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(13, 16, 51, 0.6);
+      z-index: -1;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding-top: 150px;
+      padding-bottom: 50px;
+      min-height: 100vh;
+    }
+
+    .form-wrapper {
+      background: rgba(0,0,0,0.25);
+      border-radius: 20px;
+      padding: 50px 80px;
+      max-width: 500px;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+
+    h2 { 
+      text-align: center; 
+      margin-bottom: 20px; 
+      color: #d4af37; 
+      letter-spacing:2px; 
+    }
+
+    label { 
+      display: block; 
+      font-size:14px; 
+      color:#d1d1d1; 
+      margin-bottom:6px; 
+    }
+
+    input { 
+      width: 100%; 
+      padding: 12px; 
+      border-radius:8px; 
+      border:none; 
+      margin-bottom:15px; 
+      font-size:14px; 
+      background:#fff; 
+      color:#333; 
+    }
+
+/* ---- Checkbox & Forgot Password Row ---- */
+    .checkbox-row {
+        display: flex;
+        justify-content: space-between; /* checkbox left, link right */
+        align-items: center;            /* vertically center with inputs */
+        margin-bottom: 20px;
+        gap: 10px;                      /* optional space between items */
+    }
+
+    .checkbox-row label {
+        display: flex;
+        align-items: center;            /* vertically center text with checkbox */
+        gap: 8px;                       /* space between checkbox and text */
+        font-size: 14px;
+        color: #d1d1d1;
+        cursor: pointer;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+        width: 18px;                     /* fixed width & height for consistency */
+        height: 18px;
+        accent-color: #d4af37;           /* gold accent to match design */
+        cursor: pointer;
+        margin: 0;                        /* remove default spacing */
+    }
+
+    .checkbox-row a {
+        font-size: 14px;
+        color: #d4af37;                  /* gold accent */
+        text-decoration: none;
+        transition: 0.3s;
+        white-space: nowrap;             /* prevent wrapping */
+    }
+
+    .checkbox-row a:hover {
+        text-decoration: underline;
+        color: #ffffff;
+    }
+
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      background: #ffffff;
+      color: #0b0f39;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing:1px;
+      transition:0.3s;
+    }
+
+    .btn:hover { 
+      background: #e0e0e0; 
+      transform: scale(1.05); 
+    }
+
+    p { 
+      text-align: center; 
+      margin-top:10px; 
+      font-size:14px; 
+    }
+
+    p a { 
+      color:white; 
+      font-weight:bold; 
+      text-decoration:none; 
+    }
+    
+    p a:hover { 
+      text-decoration:underline; 
+    }
+
+    @media (max-width:768px){ 
+      .form-wrapper { padding:30px; max-width:90%; } 
+    }
+
+    .form-wrapper input[type="email"],
+    .form-wrapper input[type="password"] {
+        width: 100%;           /* Makes input stretch to full form width */
+        padding: 12px 15px;    /* Inner spacing (top/bottom, left/right) */
+        margin-bottom: 15px;   /* Space between inputs */
+        border: none;          /* Remove default border */
+        border-radius: 8px;    /* Rounded corners */
+        font-size: 14px;       /* Text size */
+        box-sizing: border-box; /* Ensures padding doesn’t break width */
+        background: #fff;      /* Input background color */
+        color: #333;           /* Input text color */
+    }
+   
+    /* Optional: adjust inputs on smaller screens */
+    @media (max-width: 768px) {
+        .form-wrapper input {
+            font-size: 16px;
+            padding: 14px 18px;
+        }
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+      display: none;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #ccc;
+      border-top-color: #4d90fe;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+
+  
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <div id="errorBox" class="error"></div>
+
+  <div class="container">
+    <form class="form-wrapper" action="login_customer.php" method="post">
+      <h2>LOGIN</h2>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+
+      <div class="checkbox-row">
+        <label><input type="checkbox" name="remember"> Remember Me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn">Login</button>
+
+      <p>Don't have an account? <a href="register.html">Register</a></p>
+    </form>
+
+     <div class="overlay" id="loadingOverlay">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="navbar.js"></script>
+  <script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+const params = new URLSearchParams(window.location.search);
+if (params.has('error')) {
+  const div = document.createElement('div');
+  div.style.color = 'red';
+  div.style.marginBottom = '10px';
+  div.textContent = decodeURIComponent(params.get('error').replace(/\+/g,' '));
+  document.querySelector('.form-wrapper').prepend(div);
+}
+
+    if (error) {
+      const errorBox = document.getElementById('errorBox');
+      errorBox.textContent = decodeURIComponent(error);
+      errorBox.style.display = 'block';
+    }
+
+    // ✅ Show loading overlay on form submit
+    const form = document.getElementById('loginForm');
+    const overlay = document.getElementById('loadingOverlay');
+    form.addEventListener('submit', () => {
+      overlay.style.display = 'flex';
+    });
+</script>
+</body>
+</html>

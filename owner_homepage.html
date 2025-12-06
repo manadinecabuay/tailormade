@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TailorMade - Quotes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0d1033;
+      color: white;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* --- Background and overlay --- */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('sewingpatterns.png');
+      background-repeat: repeat;
+      background-size: contain;
+      background-position: center;
+      filter: blur(3px);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(13, 16, 51, 0.7);
+      z-index: -1;
+    }
+
+    /* --- Header --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 50px;
+      background-color: #0d1033;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    /* --- Logo --- */
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .logo img {
+      height: 50px;
+      margin-right: 12px;
+      border-radius: 8px;
+    }
+
+    .highlight {
+      color: #d4af37;
+    }
+
+    /* --- Navigation Links --- */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 6px 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #d4af37;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: #d4af37;
+    }
+
+    /* --- Main Section --- */
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 140px 20px 60px; /* push content below header */
+      margin-top: -100px;
+    }
+
+    .quote-box {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 20px;
+      padding: 60px 80px;
+      max-width: 800px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      position: fixed;
+    }
+
+    .quote-box h1 {
+      font-size: 48px;
+      font-weight: bold;
+      color: #d4af37;
+      line-height: 1.4;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .btn-group a {
+      background: #ffffff;
+      color: #0d1033;
+      padding: 16px 60px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 18px;
+      transition: 0.3s;
+    }
+
+    .btn-group a:hover {
+      background: #e0e0e0;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="tailormadeLOGO.png">
+      <span>Tailor<span class="highlight">Made</span></span>
+    </div>
+
+    <nav class="nav-links">
+      <a href="owner_homepage.php" class="active">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact Us</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="quote-box">
+      <h1>Owner's Homepage</h1>
+      <div class="btn-group">
+        <a href="login.html">LOGIN</a>
+        <a href="business_info.html">REGISTER</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

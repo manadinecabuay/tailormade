@@ -1,0 +1,594 @@
+
+
+
+<?php include('theme_loader.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Business & Owner Registration</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, var(--theme-bg) 0%, var(--theme-button) 100%);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      padding: 40px 20px;
+    }
+
+    .form-wrapper {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      padding: 50px;
+      max-width: 650px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 35px;
+      color: var(--theme-bg);
+      letter-spacing: 2px;
+      font-weight: bold;
+      font-size: 32px;
+    }
+
+    .section-title {
+      margin: 30px 0 20px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--theme-bg);
+      border-bottom: 3px solid var(--theme-bg);
+      padding-bottom: 8px;
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 14px 18px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 15px;
+      background: #fff;
+      color: #333;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--theme-bg);
+      box-shadow: 0 0 0 3px rgba(var(--theme-bg-rgb, 102, 126, 234), 0.1);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--theme-bg) 0%, var(--theme-button) 100%);
+      color: var(--theme-font);
+      border-radius: 25px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      margin-top: 30px;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(var(--theme-bg-rgb, 102, 126, 234), 0.3);
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 13px;
+      margin-top: 6px;
+      display: none;
+      font-weight: 500;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    input[type="file"]::-webkit-file-upload-button {
+      background: linear-gradient(135deg, var(--theme-bg) 0%, var(--theme-button) 100%);
+      color: var(--theme-font);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    input[type="file"]::-webkit-file-upload-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 15px;
+      }
+
+      .form-wrapper {
+        padding: 35px 25px;
+        border-radius: 20px;
+      }
+
+      h2 {
+        font-size: 26px;
+        margin-bottom: 25px;
+      }
+
+      .section-title {
+        font-size: 1.1rem;
+        margin: 25px 0 15px;
+      }
+
+      .form-group {
+        margin-bottom: 18px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+
+      .btn {
+        padding: 14px;
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 20px 10px;
+      }
+
+      .form-wrapper {
+        padding: 30px 20px;
+        border-radius: 15px;
+      }
+
+      h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+      }
+
+      .section-title {
+        font-size: 1rem;
+        margin: 20px 0 12px;
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-group label {
+        font-size: 13px;
+        margin-bottom: 6px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 11px 14px;
+        font-size: 13px;
+      }
+
+      .btn {
+        padding: 13px;
+        font-size: 14px;
+        margin-top: 20px;
+      }
+
+      .error-message {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-wrapper">
+      <h2>Business & Owner Registration</h2>
+
+      <form id="businessForm" action="business_info.php" method="POST" enctype="multipart/form-data">
+        <!-- Business Info -->
+        <div class="section-title">Business Information</div>
+
+        <div class="form-group">
+          <label for="business_name">Business Name</label>
+          <input type="text" id="business_name" name="business_name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="logo_path">Upload Logo</label>
+          <input type="file" id="logo_path" name="logo_path" accept="image/*">
+        </div>
+
+        <div class="form-group">
+          <label for="about_us">About Us</label>
+          <textarea id="about_us" name="about_us" rows="3" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="business_email">Business Email</label>
+          <input type="email" id="business_email" name="business_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+          <div id="businessEmailError" class="error-message" style="display:none;">Please enter a valid email address.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="business_contact">Business Contact</label>
+          <input type="text" id="business_contact" name="business_contact" required>
+        </div>
+
+        <!-- Owner Info -->
+        <div class="section-title">Owner Information</div>
+
+        <div class="form-group">
+          <label for="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input type="text" id="last_name" name="last_name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="" selected disabled>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" id="age" name="age" min="18" required>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City/Municipality (Cavite)</label>
+          <select id="city" name="city" required>
+            <option value="">Select City/Municipality</option>
+            <option value="Alfonso">Alfonso</option>
+            <option value="Amadeo">Amadeo</option>
+            <option value="Bacoor">Bacoor</option>
+            <option value="Carmona">Carmona</option>
+            <option value="Cavite City">Cavite City</option>
+            <option value="Dasmariñas">Dasmariñas</option>
+            <option value="General Emilio Aguinaldo">General Emilio Aguinaldo</option>
+            <option value="General Mariano Alvarez">General Mariano Alvarez</option>
+            <option value="General Trias">General Trias</option>
+            <option value="Imus">Imus</option>
+            <option value="Indang">Indang</option>
+            <option value="Kawit">Kawit</option>
+            <option value="Magallanes">Magallanes</option>
+            <option value="Maragondon">Maragondon</option>
+            <option value="Mendez">Mendez</option>
+            <option value="Naic">Naic</option>
+            <option value="Noveleta">Noveleta</option>
+            <option value="Rosario">Rosario</option>
+            <option value="Silang">Silang</option>
+            <option value="Tagaytay">Tagaytay</option>
+            <option value="Tanza">Tanza</option>
+            <option value="Ternate">Ternate</option>
+            <option value="Trece Martires">Trece Martires</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="barangay">Barangay</label>
+          <select id="barangay" name="barangay" required disabled>
+            <option value="">Select City First</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="house_block">House/Block No. (Optional)</label>
+          <input type="text" id="house_block" name="house_block" placeholder="e.g., Block 5 Lot 10, House #123">
+        </div>
+
+        <div class="address-preview" id="addressPreview" style="display:none; margin-top: 10px; padding: 15px; background: #f0f8ff; border-left: 4px solid #4CAF50; border-radius: 5px;">
+          <strong style="color: #333;">Complete Address:</strong><br>
+          <span id="addressText" style="color: #666; font-size: 14px;"></span>
+        </div>
+
+        <input type="hidden" id="address" name="address">
+
+        <div class="form-group">
+          <label for="owner_contact">Contact</label>
+          <input type="text" id="owner_contact" name="owner_contact" required>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required>
+          <div id="usernameError" class="error-message">Username is already taken. Please choose another.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="owner_email">Email</label>
+          <input type="email" id="owner_email" name="owner_email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+          <div id="ownerEmailError" class="error-message" style="display:none;">Please enter a valid email address.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="owner_password">Password</label>
+          <input type="password" id="owner_password" name="owner_password" required minlength="8">
+          <div id="passwordRequirements" style="margin-top: 8px; font-size: 12px; color: #666;">
+            <div style="margin-bottom: 5px;"><strong>Password must contain:</strong></div>
+            <div id="req-length" style="color: #dc3545;">✗ At least 8 characters</div>
+            <div id="req-capital" style="color: #dc3545;">✗ At least 1 capital letter</div>
+            <div id="req-number" style="color: #dc3545;">✗ At least 1 number</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirm_password">Confirm Password</label>
+          <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
+
+        <div class="form-group">
+          <label for="profile_photo">Upload Profile Photo</label>
+          <input type="file" id="profile_photo" name="profile_photo" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const password = document.getElementById('owner_password');
+    const confirmPassword = document.getElementById('confirm_password');
+    const usernameInput = document.getElementById('username');
+    const usernameError = document.getElementById('usernameError');
+    const businessEmail = document.getElementById('business_email');
+    const ownerEmail = document.getElementById('owner_email');
+    const businessEmailError = document.getElementById('businessEmailError');
+    const ownerEmailError = document.getElementById('ownerEmailError');
+
+    // Email validation
+    const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+    
+    businessEmail.addEventListener('input', () => {
+      const valid = emailPattern.test(businessEmail.value);
+      businessEmailError.style.display = valid || !businessEmail.value ? 'none' : 'block';
+    });
+
+    ownerEmail.addEventListener('input', () => {
+      const valid = emailPattern.test(ownerEmail.value);
+      ownerEmailError.style.display = valid || !ownerEmail.value ? 'none' : 'block';
+    });
+
+    // Password validation with real-time feedback
+    password.addEventListener('input', () => {
+      const value = password.value;
+      const reqLength = document.getElementById('req-length');
+      const reqCapital = document.getElementById('req-capital');
+      const reqNumber = document.getElementById('req-number');
+      const passwordRequirements = document.getElementById('passwordRequirements');
+
+      let allValid = true;
+
+      // Check length
+      if (value.length >= 8) {
+        reqLength.style.color = '#28a745';
+        reqLength.innerHTML = '✓ At least 8 characters';
+      } else {
+        reqLength.style.color = '#dc3545';
+        reqLength.innerHTML = '✗ At least 8 characters';
+        allValid = false;
+      }
+
+      // Check capital letter
+      if (/[A-Z]/.test(value)) {
+        reqCapital.style.color = '#28a745';
+        reqCapital.innerHTML = '✓ At least 1 capital letter';
+      } else {
+        reqCapital.style.color = '#dc3545';
+        reqCapital.innerHTML = '✗ At least 1 capital letter';
+        allValid = false;
+      }
+
+      // Check number
+      if (/\d/.test(value)) {
+        reqNumber.style.color = '#28a745';
+        reqNumber.innerHTML = '✓ At least 1 number';
+      } else {
+        reqNumber.style.color = '#dc3545';
+        reqNumber.innerHTML = '✗ At least 1 number';
+        allValid = false;
+      }
+
+      // Hide requirements when all are met
+      if (allValid && value.length > 0) {
+        passwordRequirements.style.display = 'none';
+      } else {
+        passwordRequirements.style.display = 'block';
+      }
+    });
+
+    // Username uniqueness check
+    let usernameTimeout;
+    usernameInput.addEventListener('input', () => {
+      usernameError.style.display = 'none';
+      clearTimeout(usernameTimeout);
+      const username = usernameInput.value.trim();
+      if (!username) return;
+      usernameTimeout = setTimeout(() => {
+        fetch('check_username.php?username=' + encodeURIComponent(username))
+          .then(res => res.json())
+          .then(data => {
+            if (!data.available) usernameError.style.display = 'block';
+          })
+          .catch(console.error);
+      }, 500);
+    });
+
+    // Submit validation
+    document.getElementById('businessForm').addEventListener('submit', e => {
+      // Validate business email
+      if (!emailPattern.test(businessEmail.value)) {
+        alert("Please enter a valid business email address.");
+        e.preventDefault();
+        return;
+      }
+
+      // Validate owner email
+      if (!emailPattern.test(ownerEmail.value)) {
+        alert("Please enter a valid owner email address.");
+        e.preventDefault();
+        return;
+      }
+
+      // Validate password
+      const validPwd = /^(?=.*[A-Z])(?=.*\d).{8,}$/.test(password.value);
+      if (!validPwd) {
+        alert("Invalid password. Password must be at least 8 characters with 1 capital letter and 1 number.");
+        e.preventDefault();
+        return;
+      }
+
+      // Check password match
+      if (password.value !== confirmPassword.value) {
+        alert("Passwords do not match. Please try again.");
+        e.preventDefault();
+        return;
+      }
+
+      // Check username
+      if (usernameError.style.display === 'block') {
+        alert("Username is already taken. Please choose another.");
+        e.preventDefault();
+        return;
+      }
+    });
+
+    // Barangay dropdown functionality
+    const barangays = {
+      "Alfonso": ["Amuyong","Barangay 1 (Pob.)","Barangay 2 (Pob.)","Barangay 3 (Pob.)","Barangay 4 (Pob.)","Buck Estate","Kaytitinga I","Kaytitinga II","Kaytitinga III","Luksuhin","Mangas I","Mangas II","Marahan I","Marahan II","Pajo I","Pajo II","Sikat","Sulsugin","Taywanak"],
+      "Amadeo": ["Banaybanay","Barangay 1 (Pob.)","Barangay 2 (Pob.)","Barangay 3 (Pob.)","Barangay 4 (Pob.)","Barangay 5 (Pob.)","Barangay 6 (Pob.)","Barangay 7 (Pob.)","Barangay 8 (Pob.)","Buho","Dagatan","Halang","Loma","Maymangga","Minantok Kanluran","Minantok Silangan","Pangil","Salaban","Tamacan","Talanco"],
+      "Bacoor": ["Alima","Aniban I","Aniban II","Aniban III","Aniban IV","Aniban V","Banalo","Bayanan","Campo Santo","Daang Bukid","Digman","Dulong Bayan","Habay I","Habay II","Kaingin","Ligas I","Ligas II","Ligas III","Mabolo I","Mabolo II","Mabolo III","Maliksi I","Maliksi II","Maliksi III","Mambog I","Mambog II","Mambog III","Mambog IV","Mambog V","Molino I","Molino II","Molino III","Molino IV","Molino V","Molino VI","Molino VII","Niog I","Niog II","Niog III","Panapaan I","Panapaan II","Panapaan III","Panapaan IV","Panapaan V","Panapaan VI","Panapaan VII","Panapaan VIII","Queens Row Central","Queens Row East","Queens Row West","Real I","Real II","Salinas I","Salinas II","Salinas III","Salinas IV","San Nicolas I","San Nicolas II","San Nicolas III","Sineguelasan","Tabing Dagat","Talaba I","Talaba II","Talaba III","Talaba IV","Talaba V","Talaba VI","Talaba VII","Zapote I","Zapote II","Zapote III","Zapote IV","Zapote V"],
+      "Carmona": ["Bancal","Barangay 1 (Pob.)","Barangay 2 (Pob.)","Barangay 3 (Pob.)","Barangay 4 (Pob.)","Barangay 5 (Pob.)","Barangay 6 (Pob.)","Cabilang Baybay","Lantic","Mabuhay","Milagrosa","Mamarlao"],
+      "Cavite City": ["Barangay 1","Barangay 2","Barangay 3","Barangay 4","Barangay 5","Barangay 6","Barangay 7","Barangay 8","Barangay 9","Barangay 10","Barangay 11","Barangay 12","Barangay 13","Barangay 14","Barangay 15","Barangay 16","Barangay 17","Barangay 18","Barangay 19","Barangay 20","Barangay 21","Barangay 22","Barangay 23","Barangay 24","Barangay 25","Barangay 26","Barangay 27","Barangay 28","Barangay 29","Barangay 30","Barangay 31","Barangay 32","Barangay 33","Barangay 34","Barangay 35","Barangay 36","Barangay 37","Barangay 38","Barangay 39","Barangay 40","Barangay 41","Barangay 42","Barangay 43","Barangay 44","Barangay 45","Barangay 46","Barangay 47","Barangay 48","Barangay 49","Barangay 50","Barangay 51","Barangay 52","Barangay 53","Barangay 54","Barangay 55","Barangay 56","Barangay 57","Barangay 58","Barangay 59","Barangay 60","Barangay 61","Barangay 62","Barangay 63","Barangay 64","Barangay 65","Barangay 66","Barangay 67","Barangay 68","Barangay 69","Barangay 70","Barangay 71","Barangay 72","Barangay 73","Barangay 74","Barangay 75","Barangay 76","Barangay 77","Barangay 78","Barangay 79","Barangay 80","Barangay 81","Barangay 82","Barangay 83","Barangay 84"],
+      "Dasmariñas": ["Salitran I","Salitran II","Salitran III","Salitran IV","Sampaloc I","Sampaloc II","Sampaloc III","Sampaloc IV","Sampaloc V","San Agustin I","San Agustin II","San Agustin III","San Andres I","San Andres II","San Esteban","San Isidro Labrador I","San Isidro Labrador II","San Jose","San Juan I","San Juan II","San Lorenzo Ruiz I","San Lorenzo Ruiz II","San Luis I","San Luis II","San Manuel I","San Manuel II","San Mateo","San Miguel I","San Miguel II","San Nicolas I","San Nicolas II","San Roque","San Simon","Santa Cristina I","Santa Cristina II","Santa Cruz I","Santa Cruz II","Santa Fe","Santa Lucia","Victoria Reyes","Zone I (Pob.)","Zone II (Pob.)","Zone III (Pob.)","Zone IV (Pob.)"],
+      "General Emilio Aguinaldo": ["A. Dalusag","Batas Dao","Castaños Cerca","Castaños Lejos","Kabulusan","Kaymisas","Kaypaaba","Lumipa","Narvaez","Poblacion I","Poblacion II","Poblacion III","Poblacion IV","Tabora"],
+      "General Mariano Alvarez": ["Aldiano Olaes","Barangay 1 (Pob.)","Barangay 2 (Pob.)","Barangay 3 (Pob.)","Barangay 4 (Pob.)","Benjamin Tirona","Bernardo Pulido","Epifanio Malia","Francisco De Castro","Francisco Reyes","Fiorello Calimag","Gavino Maderan","Gregoria De Jesus","Inocencio Salud","Jacinto Lumbreras","Kapitan Kua","Koronel Jose P. Elises","Macario Dacon","Marcelino Memije","Nicolasa Virata (Pob.)","Pantaleon Granados","Ramon Cruz","San Gabriel","San Jose","Severino De Las Alas","Tiniente Tiago"],
+      "General Trias": ["Alingaro","Arnaldo Pob. (Bgy. 7)","Bacao I","Bacao II","Bagumbayan Pob. (Bgy. 5)","Biclatan","Buenavista I","Buenavista II","Buenavista III","Corregidor Pob. (Bgy. 10)","Dulong Bayan Pob. (Bgy. 3)","Gov. Ferrer Pob. (Bgy. 1)","Javalera","Manggahan","Navarro","Ninety Sixth Pob. (Bgy. 8)","Panungyanan","Pasong Camachile I","Pasong Camachile II","Pasong Kawayan I","Pasong Kawayan II","Pinagtipunan","Prinza Pob. (Bgy. 9)","Sampalucan Pob. (Bgy. 2)","San Francisco","San Gabriel Pob. (Bgy. 4)","San Juan I","San Juan II","Santa Clara","Santiago","Tapia","Tejero","Vibora Pob. (Bgy. 6)"],
+      "Imus": ["Alapan I-A","Alapan I-B","Alapan I-C","Alapan II-A","Alapan II-B","Anabu I-A","Anabu I-B","Anabu I-C","Anabu I-D","Anabu I-E","Anabu I-F","Anabu I-G","Anabu II-A","Anabu II-B","Anabu II-C","Anabu II-D","Anabu II-E","Anabu II-F","Bayan Luma I","Bayan Luma II","Bayan Luma III","Bayan Luma IV","Bayan Luma V","Bayan Luma VI","Bayan Luma VII","Bayan Luma VIII","Bucandala I","Bucandala II","Bucandala III","Bucandala IV","Bucandala V","Buhay na Tubig","Carsadang Bago I","Carsadang Bago II","Magdalo","Maharlika","Malagasang I-A","Malagasang I-B","Malagasang I-C","Malagasang I-D","Malagasang I-E","Malagasang I-F","Malagasang I-G","Malagasang II-A","Malagasang II-B","Malagasang II-C","Malagasang II-D","Malagasang II-E","Malagasang II-F","Malagasang II-G","Mariano Espeleta I","Mariano Espeleta II","Mariano Espeleta III","Medicion I-A","Medicion I-B","Medicion I-C","Medicion I-D","Medicion II-A","Medicion II-B","Medicion II-C","Medicion II-D","Medicion II-E","Medicion II-F","Pag-asa I","Pag-asa II","Pag-asa III","Palico I","Palico II","Palico III","Palico IV","Pasong Buaya I","Pasong Buaya II","Poblacion I-A (Pob.)","Poblacion I-B","Poblacion I-C","Poblacion II-A","Poblacion II-B","Poblacion III-A","Poblacion III-B","Poblacion IV-A","Poblacion IV-B","Poblacion IV-C","Poblacion IV-D","Tanzang Luma I","Tanzang Luma II","Tanzang Luma III","Tanzang Luma IV","Tanzang Luma V","Tanzang Luma VI","Toclong I-A","Toclong I-B","Toclong I-C","Toclong II-A","Toclong II-B"],
+      "Indang": ["Agus-us","Alulod","Banaba Cerca","Banaba Lejos","Bancod","Buna Cerca","Buna Lejos I","Buna Lejos II","Calumpang Cerca","Calumpang Lejos I","Calumpang Lejos II","Carasuchi","Daine I","Daine II","Guyam Malaki","Guyam Munti","Harasan","Kayquit I","Kayquit II","Kayquit III","Kaytambog","Kaytapos","Limbon","Lumampong Balagbag","Lumampong Halayhay","Mahabangkahoy Cerca","Mahabangkahoy Lejos","Mataas na Lupa","Pulo","Tambo Balagbag","Tambo Ilaya","Tambo Kulit"],
+      "Kawit": ["Balsahan-Bisita","Batong Dalig","Binakayan-Aplaya","Binakayan-Kanluran","Congbalay-Legaspi","Gahak","Kaingen","Magdalo (Putol)","Manggahan-Lawin","Marulas","Panamitan","Poblacion","Pulvorista","Putol-Tanza","San Sebastian","Santa Isabel","Tabon I","Tabon II","Tabon III","Toclong","Tramo-Bantayan","Wakas I","Wakas II"],
+      "Magallanes": ["Barangay 1 (Pob.)","Barangay 2 (Pob.)","Barangay 3 (Pob.)","Barangay 4 (Pob.)","Bend","Bocaue","Iba","Medina","Pacheco","Ramirez","Tua","Velasquez"],
+      "Maragondon": ["Balayungan","Bancaan","Bucal I","Bucal II","Bucal III A","Bucal III B","Caingin","Canumay East","Canumay West","Garita I","Garita II","Layong Mabilog","Mabato","Pantihan I","Pantihan II","Pantihan III","Patungan","Pinagsanhan A","Pinagsanhan B","Poblacion I A","Poblacion I B","Poblacion II A","Poblacion II B","San Miguel I","San Miguel II","Talipusngo","Tulay Kanluran","Tulay Silangan"],
+      "Mendez": ["Anuling Cerca I","Anuling Cerca II","Anuling Lejos I","Anuling Lejos II","Banaybanay I","Banaybanay II","Bukal","Galicia I","Galicia II","Galicia III","Miguel Mojica","Neogan","Panungyan I","Panungyan II","Poblacion I","Poblacion II","Poblacion III","Poblacion IV"],
+      "Naic": ["Bagong Kalsada","Balsahan","Bancaan","Bucana Malaki","Bucana Sasahan","Calubcob","Capt. C. Nazareno (Pob.)","Gomez-Zamora (Pob.)","Halang","Humbac","Ibayo Estacion","Ibayo Silangan","Kanluran","Labac","Latoria","Mabolo","Makina","Malainen Bago","Malainen Luma","Molino","Munting Mapino","Muzon","Palangue Central","Palangue North","Palangue South","Palangue 1 & 2","Sabang","San Roque","Santulan","Sapa","Timalan Balsahan","Timalan Concepcion"],
+      "Noveleta": ["Magdiwang","Poblacion","Salcedo I","Salcedo II","San Antonio I","San Antonio II","San Jose I","San Jose II","San Juan I","San Juan II","San Rafael I","San Rafael II","San Rafael III","San Rafael IV","Santa Rosa I","Santa Rosa II"],
+      "Rosario": ["Bagbag I","Bagbag II","Kanluran","Ligtong I","Ligtong II","Ligtong III","Ligtong IV","Muzon I","Muzon II","Poblacion","Sapa I","Sapa II","Sapa III","Sapa IV","Tejeros Convention","Wawa I","Wawa II","Wawa III"],
+      "Silang": ["Acacia","Adlas","Anahaw I","Anahaw II","Balite I","Balite II","Balite III","Batas","Biga I","Biga II","Biluso","Bucal","Bulihan","Cabangaan","Carmen","Hukay","Iba","Inchican","Ipil I","Ipil II","Kalubkob","Kaong","Lalaan I","Lalaan II","Litlit","Lucsuhin","Lumil","Maguyam","Malabag","Mataas na Burol","Narra I","Narra II","Narra III","Paligawan","Pasong Langka","Pooc I","Pooc II","Poblacion I","Poblacion II","Poblacion III","Pulong Bunga","Pulong Saging","Puting Kahoy","Sabutan","San Miguel I","San Miguel II","San Vicente I","San Vicente II","Santa Rosa I","Santa Rosa II","Santol","Tartaria","Tibig","Toledo","Tubuan I","Tubuan II","Tubuan III","Ulat"],
+      "Tagaytay": ["Asisan","Bagong Tubig","Calabuso","Dapdap East","Dapdap West","Francisco","Guinhawa North","Guinhawa South","Iruhin Central","Iruhin East","Iruhin South","Iruhin West","Kaybagal Central","Kaybagal North","Kaybagal South (Pob.)","Mag-Asawang Ilat","Maharlika East","Maharlika West","Maitim 2nd Central","Maitim 2nd East","Maitim 2nd West","Mendez Crossing East","Mendez Crossing West","Neogan","Patutong Malaki North","Patutong Malaki South","Sambong","San Jose","Silang Crossing North","Silang Crossing South","Sungay East","Sungay West","Tolentino East","Tolentino West","Zambal"],
+      "Tanza": ["Amaya I","Amaya II","Amaya III","Amaya IV","Amaya V","Amaya VI","Amaya VII","Bagtas","Biga","Biwas","Bucal","Calibuyo","Capipisa","Daang Amaya I","Daang Amaya II","Daang Amaya III","Halayhay","Julugan I","Julugan II","Julugan III","Julugan IV","Julugan V","Julugan VI","Julugan VII","Julugan VIII","Lambingan","Mulawin","Punta I","Punta II","Sahud Ulan","Sanja Mayor","Santol","Tanauan","Tres Cruses"],
+      "Ternate": ["Barangay I (Pob.)","Barangay II (Pob.)","Barangay III (Pob.)","Barangay IV (Pob.)","Barangay V (Pob.)","Bucana","Poblacion 1A","San Jose","San Juan I","San Juan II","Sapang I","Sapang II"],
+      "Trece Martires": ["Aguado","Cabezas","Cabuco","De Ocampo","Gregorio","Inocencio","Lapidario","Llavac","Luciano","Osorio","Perez","San Agustin (Pob.)"]
+    };
+
+    const citySelect = document.getElementById('city');
+    const barangaySelect = document.getElementById('barangay');
+    const addressInput = document.getElementById('address');
+    const houseBlockInput = document.getElementById('house_block');
+
+    citySelect.addEventListener('change', function() {
+      const selectedCity = this.value;
+      barangaySelect.innerHTML = '<option value="">Select Barangay</option>';
+      
+      if (selectedCity && barangays[selectedCity]) {
+        barangaySelect.disabled = false;
+        barangays[selectedCity].forEach(function(barangay) {
+          const option = document.createElement('option');
+          option.value = barangay;
+          option.textContent = barangay;
+          barangaySelect.appendChild(option);
+        });
+      } else {
+        barangaySelect.disabled = true;
+        barangaySelect.innerHTML = '<option value="">Select City First</option>';
+      }
+      updateAddress();
+    });
+
+    barangaySelect.addEventListener('change', updateAddress);
+    houseBlockInput.addEventListener('input', updateAddress);
+
+    function updateAddress() {
+      const city = citySelect.value;
+      const barangay = barangaySelect.value;
+      const houseBlock = houseBlockInput.value;
+      const addressPreview = document.getElementById('addressPreview');
+      const addressText = document.getElementById('addressText');
+      
+      if (city && barangay) {
+        let address = "Cavite, " + city + ", " + barangay;
+        if (houseBlock) {
+          address += ", " + houseBlock;
+        }
+        addressInput.value = address;
+        addressText.textContent = address;
+        addressPreview.style.display = 'block';
+      } else {
+        addressInput.value = '';
+        addressPreview.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
